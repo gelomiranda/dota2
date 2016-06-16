@@ -17,7 +17,8 @@ $app->get('/', function () use ($app) {
 
 
 $app->get('api/example','ExampleController@index');
+$app->get('api/hero','HeroController@index');
 
 $app->get('api/items','ItemController@index');
-$app->get('api/item','ItemController@item');
+$app->get('api/item/{item_id}','ItemController@item');
 $app->get('api/profile','ProfileController@index');

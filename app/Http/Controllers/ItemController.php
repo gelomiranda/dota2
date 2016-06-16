@@ -16,7 +16,7 @@ class ItemController extends Controller
 
 
     public function index(){
-      header('Access-Control-Allow-Origin: *');  
+        header('Access-Control-Allow-Origin: *');  
         $itemsMapperWeb = new Dota2Api\Mappers\ItemsMapperWeb();
         $itemsInfo = $itemsMapperWeb->load();
         $rows = array();
@@ -36,15 +36,19 @@ class ItemController extends Controller
         echo $json_array;
     }
 
-    public function item(){
+    public function item($item_id){
       $items = new Dota2Api\Data\Items();
       $class_methods = get_class_methods($items);
-       print_r($class_methods);
       $items->parse();
-      echo $items-getDataById(149); // get info about Crystalis
-      
-     
-      echo $items->getImgUrlById(149, false); // large image
-      echo $items->getImgUrlById(149); // thumb
+      print_r($items->getDataById($item_id)); // get info about Crystalis
+      print_r( $items->getDataById($item_id));
+      print_r( $items->getImgUrlById($item_id, false)); // large image
+      // echo $items->getImgUrlById(149); // thumb
+
+      $heroes = new Dota2Api\Data\Heroes();
+      $heroes->parse();
+      //print_r($heroes->getDataById(97)); // get info about Magnus
+      $heroes->getImgUrlById(97, false); // large image
+      $heroes->getImgUrlById(97); // thumb
     }
 }
